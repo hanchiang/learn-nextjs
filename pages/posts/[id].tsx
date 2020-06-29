@@ -9,7 +9,7 @@ import { getAllPostIds, getPost } from "../../lib/posts";
 
 import { Post } from "../../lib/posts";
 
-export default function Post(props) {
+export default function DynamicPost(props) {
   const { post }: { post: Post } = props;
   return (
     <Layout>
