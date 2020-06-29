@@ -1,14 +1,15 @@
-import Link from 'next/link'
-import Head from 'next/head'
+import Link from "next/link";
+import Head from "next/head";
+import { GetStaticProps } from "next";
 
-import Layout, { siteTitle } from '../components/layout'
-import Date from '../components/date'
-import utilStyles from '../styles/utils.module.css'
+import Layout, { siteTitle } from "../components/layout";
+import Date from "../components/date";
+import utilStyles from "../styles/utils.module.css";
 
-import { getSortedPosts } from '../lib/posts'
+import { getSortedPosts, AllPosts } from "../lib/posts";
 
 export default function Home(props) {
-  const { allPosts } = props;
+  const { allPosts }: { allPosts: AllPosts[] } = props;
 
   return (
     <Layout home>
@@ -18,10 +19,19 @@ export default function Home(props) {
 
       <section className={utilStyles.headingMd}>
         <p>Hello, I&apos;m Han Chiang, a Singapore-based software engineer.</p>
-        <p>I take pride in designing and building systems that are scalable and maintainable.</p>
-        <p>You can reach me at <a target="_blank" href="https://www.linkedin.com/in/yap-han-chiang/">LinkedIn</a>.</p>
         <p>
-          (This is a sample website - you’ll be building a site like this on{' '}
+          I take pride in designing and building systems that are scalable and
+          maintainable.
+        </p>
+        <p>
+          You can reach me at{" "}
+          <a target="_blank" href="https://www.linkedin.com/in/yap-han-chiang/">
+            LinkedIn
+          </a>
+          .
+        </p>
+        <p>
+          (This is a sample website - you’ll be building a site like this on{" "}
           <a href="https://nextjs.org/learn">our Next.js tutorial</a>.)
         </p>
       </section>
@@ -43,14 +53,14 @@ export default function Home(props) {
         </ul>
       </section>
     </Layout>
-  )
+  );
 }
 
-export async function getStaticProps() {
+export const getStaticProps: GetStaticProps = async () => {
   const allPosts = getSortedPosts();
   return {
     props: {
-      allPosts
-    }
-  }
-}
+      allPosts,
+    },
+  };
+};
